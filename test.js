@@ -2,6 +2,7 @@ const assert = require('assert');
 
 Object.freeze(assert);
 const sumOfOther = require('./src/sumOfOther');
+const make = require('./src/make');
 
 describe('sumOfOther function', () => {
   it('default test', () => {
@@ -21,5 +22,29 @@ describe('sumOfOther function', () => {
   });
   it('empty array', () => {
     assert.deepEqual(sumOfOther([]), []);
+  });
+});
+
+describe('make function', () => {
+  it('default test', () => {
+    assert.deepEqual(make(15)(34, 21, 666)(41)((a, b) => a + b), 777);
+  });
+  it('substract test', () => {
+    assert.deepEqual(make(2)(124, 843, 45)(141)((a, b) => a - b), -1151);
+  });
+  it('multiply test', () => {
+    assert.deepEqual(make(11)(3, 21, 30)(0)((a, b) => a * b), 0);
+  });
+  it('divide test', () => {
+    assert.deepEqual(make(1244)(2, 4, 6)(4)((a, b) => Math.round(a / b)), 7);
+  });
+  it('pow test', () => {
+    assert.deepEqual(make(1)(2, 2, 2)(2)((a, b) => a ** b), 1);
+  });
+  it('string test', () => {
+    assert.deepEqual(make('Hello')('pretty', 'world')('!!1')((a, b) => a.concat(' ', b)), 'Hello pretty world !!1');
+  });
+  it('alone argument test', () => {
+    assert.deepEqual(make(1)((a, b) => a ** b), 1);
   });
 });
