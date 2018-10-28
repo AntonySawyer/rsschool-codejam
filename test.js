@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 const assert = require('assert');
 
 Object.freeze(assert);
@@ -16,10 +17,12 @@ describe('sumOfOther function', () => {
     assert.deepEqual(sumOfOther([0, 1, 2, -1]), [2, 1, 0, 3]);
   });
   it('big array', () => {
-    assert.deepEqual(sumOfOther([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), [45, 44, 43, 42, 41, 40, 39, 38, 37, 36]);
+    assert.deepEqual(sumOfOther([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
+      [45, 44, 43, 42, 41, 40, 39, 38, 37, 36]);
   });
   it('big negative array', () => {
-    assert.deepEqual(sumOfOther([-10, -67, -9, -6, -14, -193, -46, -17, -8, 0]), [-360, -303, -361, -364, -356, -177, -324, -353, -362, -370]);
+    assert.deepEqual(sumOfOther([-10, -67, -9, -6, -14, -193, -46, -17, -8, 0]),
+      [-360, -303, -361, -364, -356, -177, -324, -353, -362, -370]);
   });
   it('empty array', () => {
     assert.deepEqual(sumOfOther([]), []);
@@ -52,15 +55,27 @@ describe('make function', () => {
 
 describe('makerecursion function', () => {
   it('default test', () => {
-    let tree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}};
+    const tree = {
+      value: 100,
+      left: { value: 90, left: { value: 70 }, right: { value: 99 } },
+      right: { value: 120, left: { value: 110 }, right: { value: 130 } },
+    };
     assert.deepEqual(recursion(tree), [[100], [90, 120], [70, 99, 110, 130]]);
   });
   it('another test', () => {
-    let tree = {"value":10000,"left":{"value":9000,"left":{"value":7000},"right":{"value":9900}},"right":{"value":12000,"left":{"value":11000},"right":{"value":13000}}};
+    const tree = {
+      value: 10000,
+      left: { value: 9000, left: { value: 7000 }, right: { value: 9900 } },
+      right: { value: 12000, left: { value: 11000 }, right: { value: 13000 } },
+    };
     assert.deepEqual(recursion(tree), [[10000], [9000, 12000], [7000, 9900, 11000, 13000]]);
   });
   it('and one more test', () => {
-    let tree = {"value":94,"left":{"value":81,"left":{"value":57},"right":{"value":93}},"right":{"value":114,"left":{"value":104},"right":{"value":125}}};
+    const tree = {
+      value: 94,
+      left: { value: 81, left: { value: 57 }, right: { value: 93 } },
+      right: { value: 114, left: { value: 104 }, right: { value: 125 } },
+    };
     assert.deepEqual(recursion(tree), [[94], [81, 114], [57, 93, 104, 125]]);
   });
 });
