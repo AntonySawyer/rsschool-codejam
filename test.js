@@ -3,6 +3,7 @@ const assert = require('assert');
 Object.freeze(assert);
 const sumOfOther = require('./src/sumOfOther');
 const make = require('./src/make');
+const recursion = require('./src/recursion');
 
 describe('sumOfOther function', () => {
   it('default test', () => {
@@ -46,5 +47,20 @@ describe('make function', () => {
   });
   it('alone argument test', () => {
     assert.deepEqual(make(1)((a, b) => a ** b), 1);
+  });
+});
+
+describe('makerecursion function', () => {
+  it('default test', () => {
+    let tree = {"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}};
+    assert.deepEqual(recursion(tree), [[100], [90, 120], [70, 99, 110, 130]]);
+  });
+  it('another test', () => {
+    let tree = {"value":10000,"left":{"value":9000,"left":{"value":7000},"right":{"value":9900}},"right":{"value":12000,"left":{"value":11000},"right":{"value":13000}}};
+    assert.deepEqual(recursion(tree), [[10000], [9000, 12000], [7000, 9900, 11000, 13000]]);
+  });
+  it('and one more test', () => {
+    let tree = {"value":94,"left":{"value":81,"left":{"value":57},"right":{"value":93}},"right":{"value":114,"left":{"value":104},"right":{"value":125}}};
+    assert.deepEqual(recursion(tree), [[94], [81, 114], [57, 93, 104, 125]]);
   });
 });
